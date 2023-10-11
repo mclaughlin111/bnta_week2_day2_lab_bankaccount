@@ -8,11 +8,17 @@ public class BankAccount {
     private int accountNumber;
     private double balance;
 
-    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth, int accountNumber, float balance){
+    private String accountType;
+
+    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth, int accountNumber, float balance, String accountType){
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.accountNumber = accountNumber;
+
+        accountType = "regular";
+        this.accountType = accountType;
+
         balance = 0;
         this.balance = balance;
     }
@@ -24,6 +30,9 @@ public class BankAccount {
     public double getAccountBalance() {return this.balance;}
 
     // Setterz
+    public void setAccountType(String newAccountType){
+        this.accountType = newAccountType;
+    }
 public void setFirstName(String newFirstName){
         this.firstName = newFirstName;
 }
@@ -48,7 +57,15 @@ public void withdraw(float newWidthrawal){
 }
 
 public void payInterest(){
-        double interest = 0.05;
+        double interest = 0;
+
+        if (accountType=="saver"){
+            interest = 0.09;
+        }
+        else if (accountType=="regular"){
+        interest = 0.05;
+        }
+
         this.balance = (this.balance + (this.balance*interest));
 
 }

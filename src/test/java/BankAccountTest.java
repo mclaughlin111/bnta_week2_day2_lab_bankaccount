@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BankAccountTest {
 
-   public BankAccount testAccount = new BankAccount("Tom", "Mclaughlin", LocalDate.of(1999,11,11), 1604, 0);
+   public BankAccount testAccount = new BankAccount("Tom", "Mclaughlin", LocalDate.of(1999,11,11), 1604, 0, "saver");
 
 //   @Test
 //    void bankAccountTest(){
@@ -85,6 +85,21 @@ public class BankAccountTest {
       assertThat(testAccount.getAccountBalance()).isEqualTo((540+27));
 
    }
+
+   @Test
+   void bankAccountTestAccountInterest(){
+      //deposit test amount
+      testAccount.deposit(540);
+      testAccount.setAccountType("regular");
+
+      testAccount.payInterest();
+      assertThat(testAccount.getAccountBalance()).isEqualTo((540+27));
+
+
+
+   }
+
+
 
 
 }
