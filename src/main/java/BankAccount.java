@@ -45,7 +45,7 @@ public void setDateOfBirth(LocalDate newDateOfBirth){
 public void setAccountNumber(int newAccountNumber){
         this.accountNumber = newAccountNumber;
 }
-public void setAccountBalance(float newAccountBalance){
+public void setAccountBalance(double newAccountBalance){
         this.balance = newAccountBalance;
 }
 public void deposit(float newDeposit){

@@ -42,9 +42,10 @@ public class BankAccountTest {
 
    @Test
    void bankAccountNumberTest(){
+      //test account number getter
       int expectedAccountNumber = testAccount.getAccountNumber();
       assertThat(expectedAccountNumber).isEqualTo(1604);
-      //test setter
+      //test account number setter
       testAccount.setAccountNumber(000);
       assertThat(testAccount.getAccountNumber()).isEqualTo(000);
 
@@ -88,14 +89,17 @@ public class BankAccountTest {
 
    @Test
    void bankAccountTestAccountInterest(){
-      //deposit test amount
+      // test regular account.
       testAccount.deposit(540);
       testAccount.setAccountType("regular");
-
       testAccount.payInterest();
       assertThat(testAccount.getAccountBalance()).isEqualTo((540+27));
 
-
+      // test saver account
+      testAccount.setAccountBalance(540);
+      testAccount.setAccountType("saver");
+      testAccount.payInterest();
+      assertThat(testAccount.getAccountBalance()).isEqualTo((540+48.6));
 
    }
 
