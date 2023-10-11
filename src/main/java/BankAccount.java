@@ -8,9 +8,11 @@ public class BankAccount {
     private int accountNumber;
     private double balance;
 
+    private double overdraft;
+
     private String accountType;
 
-    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth, int accountNumber, float balance, String accountType){
+    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth, int accountNumber, float balance, String accountType, double overdraft){
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -21,6 +23,9 @@ public class BankAccount {
 
         balance = 0;
         this.balance = balance;
+
+        overdraft = 0;
+        this.overdraft = overdraft;
     }
 // Getterz
     public String getFirstName() {return this.firstName;}
@@ -48,13 +53,22 @@ public void setAccountNumber(int newAccountNumber){
 public void setAccountBalance(double newAccountBalance){
         this.balance = newAccountBalance;
 }
-public void deposit(float newDeposit){
+public void deposit(double newDeposit){
         this.balance = balance + newDeposit;
 }
 
-public void withdraw(float newWidthrawal){
-        this.balance = balance - newWidthrawal;
+public void withdraw(double newWidthrawal){
+        if ((this.balance-newWidthrawal) <= overdraft){
+            System.out.println("overdraft met or account overdrawn");
+        }
+        else{this.balance = balance - newWidthrawal;}
 }
+
+public void setOverdraft(double overdraft){
+        this.overdraft = overdraft;
+}
+
+// Extension methods
 
 public void payInterest(){
         double interest = 0;
