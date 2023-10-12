@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -6,7 +7,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BankAccountTest {
 
-   public BankAccount testAccount = new BankAccount("Tom", "Mclaughlin", LocalDate.of(1999,11,11), 1604, 0, "saver", -50);
+   //FOR SETUP
+//   @BeforeEach
+//   public void setUp(){
+//      BankAccount bankAccountSetUp = new BankAccount("Tom", "Mclaughlin", LocalDate.of(1999,11,11), 1604, "saver", -50);
+//   }
+
+   public BankAccount testAccount = new BankAccount("Tom", "Mclaughlin", LocalDate.of(1999,11,11), 1604, "saver", -50);
 
 //   @Test
 //    void bankAccountTest(){
@@ -70,11 +77,13 @@ public class BankAccountTest {
 
    @Test
    void bankAccountTestWithdraw(){
+      testAccount.setAccountBalance(0);
+//      testAccount.setOverdraft(-50);
       //deposit test amount
       testAccount.deposit(540);
       //withdraw test amount
-      testAccount.withdraw(25);
-      assertThat(testAccount.getAccountBalance()).isEqualTo((540-25));
+      testAccount.withdraw(5);
+      assertThat(testAccount.getAccountBalance()).isEqualTo((535));
 
    }
 
