@@ -58,10 +58,16 @@ public void deposit(double newDeposit){
 }
 
 public void withdraw(double newWidthrawal){
-        if ((this.balance-newWidthrawal) <= overdraft){
+        boolean overdraftMet;
+        if (this.balance <= overdraft) {
+            overdraftMet = true;
             System.out.println("overdraft met or account overdrawn");
         }
-        else{this.balance = balance - newWidthrawal;}
+    while (overdraftMet != true) {
+        this.balance = this.balance - newWidthrawal;
+    }
+    
+
 }
 
 public void setOverdraft(double overdraft){
